@@ -15,8 +15,8 @@ public class ModEntities {
 
     public static final RegistryObject<EntityType<SteveAvengerEntity>> STEVE_AVENGER =
             ENTITIES.register("steve_avenger", () -> EntityType.Builder
-                    .<SteveAvengerEntity>create(SteveAvengerEntity::new, EntityClassification.MONSTER)
-                    .size(0.6F, 1.95F)
+                    .<SteveAvengerEntity>of(SteveAvengerEntity::new, EntityClassification.MONSTER)
+                    .sized(0.6F, 1.95F)
                     .clientTrackingRange(8)
                     .build(new ResourceLocation(SteveAvengerMod.MOD_ID, "steve_avenger").toString())
             );
