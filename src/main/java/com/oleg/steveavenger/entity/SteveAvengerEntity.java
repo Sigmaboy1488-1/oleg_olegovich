@@ -2,6 +2,7 @@ package com.oleg.steveavenger.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.monster.ZombieEntity;
@@ -25,11 +26,11 @@ public class SteveAvengerEntity extends ZombieEntity {
                 .add(Attributes.FOLLOW_RANGE, 35.0D);
     }
 
-    private boolean hasFullLeatherArmor(PlayerEntity player) {
-        ItemStack head = player.getItemBySlot(EquipmentSlotType.HEAD);
-        ItemStack chest = player.getItemBySlot(EquipmentSlotType.CHEST);
-        ItemStack legs = player.getItemBySlot(EquipmentSlotType.LEGS);
-        ItemStack feet = player.getItemBySlot(EquipmentSlotType.FEET);
+    public static boolean hasFullLeatherArmor(LivingEntity entity) {
+        ItemStack head = entity.getItemBySlot(EquipmentSlotType.HEAD);
+        ItemStack chest = entity.getItemBySlot(EquipmentSlotType.CHEST);
+        ItemStack legs = entity.getItemBySlot(EquipmentSlotType.LEGS);
+        ItemStack feet = entity.getItemBySlot(EquipmentSlotType.FEET);
 
         return head.getItem() == Items.LEATHER_HELMET
                 && chest.getItem() == Items.LEATHER_CHESTPLATE
@@ -37,18 +38,45 @@ public class SteveAvengerEntity extends ZombieEntity {
                 && feet.getItem() == Items.LEATHER_BOOTS;
     }
 
+    /**
+     * Моб не должен выбирать целью игрока в полном кожаной сете.
+     */
+    @Override
+    public void setTarget(LivingEntity target) {
+        if (target instanceof PlayerEntity && hasFullLeatherArmor(target)) {
+            // Если игрок в полной кожаной броне — не берём его в цель
+            // и сбрасываем текущую цель, если она была
+            if (getTarget() == target) {
+                super.setTarget(null);
+            }
+            return;
+        }
+        super.setTarget(target);
+    }
+
+    /**
+     * Каждый тик проверяем: если текущая цель — игрок, надевший полный кожаный сет,
+     * сбрасываем цель, чтобы моб перестал его преследовать.
+     */
+    @Override
+    public void tick() {
+        super.tick();
+
+        LivingEntity target = getTarget();
+        if (target instanceof PlayerEntity && hasFullLeatherArmor(target)) {
+            setTarget(null);
+        }
+    }
+
     @Override
     public boolean doHurtTarget(Entity entityIn) {
-        if (entityIn instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) entityIn;
-            if (hasFullLeatherArmor(player)) {
-                return false;
-            }
+        if (entityIn instanceof PlayerEntity && hasFullLeatherArmor((PlayerEntity) entityIn)) {
+            return false;
         }
         return super.doHurtTarget(entityIn);
     }
 
-    // Запрещаем зомби гореть на солнце
+    // Запрещаем гореть на солнце
     @Override
     protected boolean isSunSensitive() {
         return false;
