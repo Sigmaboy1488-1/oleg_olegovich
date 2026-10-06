@@ -4,6 +4,10 @@ buildscript {
             name = "forge"
             url = "https://mirrors.qlu.edu.cn/bmclapi"
         }
+        maven {
+            name = "gitverse"
+            url = "https://mvn-mirror.gitverse.ru"
+        }
         mavenCentral()
     }
     dependencies {
@@ -67,6 +71,10 @@ repositories {
     maven {
         name = "forge"
         url = "https://mirrors.qlu.edu.cn/bmclapi"
+    }
+    maven {
+        name = "gitverse"
+        url = "https://mvn-mirror.gitverse.ru"
     }
 }
 
