@@ -28,6 +28,8 @@ println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getPro
 minecraft {
     mappings channel: 'official', version: '1.16.5'
 
+    property 'net.minecraftforge.gradle.check.certs', 'false'
+
     runs {
         client {
             workingDirectory project.file('run')
