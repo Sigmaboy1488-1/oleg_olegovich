@@ -11,7 +11,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class SteveAvengerEntity extends ZombieEntity {
@@ -69,7 +72,7 @@ public class SteveAvengerEntity extends ZombieEntity {
                 setTarget(null);
             } else if (!hasArmor) {
                 soundTimer++;
-                if (soundTimer >= 120) {
+                if (soundTimer >= 50) {
                     soundTimer = 0;
                     this.level.playSound(null, this.getX(), this.getY(), this.getZ(),
                             ModSounds.PHRASE1.get(), SoundCategory.HOSTILE, 1.0F, 1.0F);
@@ -93,5 +96,32 @@ public class SteveAvengerEntity extends ZombieEntity {
     @Override
     protected boolean isSunSensitive() {
         return false;
+    }
+
+    // ====== Отключаем все стандартные звуки зомби ======
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return null;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return null;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return null;
+    }
+
+    @Override
+    protected SoundEvent getStepSound() {
+        return null;
+    }
+
+    @Override
+    protected void playStepSound(BlockPos pos, net.minecraft.block.BlockState blockIn) {
+        // Ничего не делаем — шаги беззвучны
     }
 }
