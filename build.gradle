@@ -9,6 +9,10 @@ buildscript {
             url = "https://mirror.sjtu.edu.cn/bmclapi"
         }
         maven {
+            name = "lss233"
+            url = "https://lss233.littleservice.cn/repositories/minecraft"
+        }
+        maven {
             name = "gitverse"
             url = "https://mvn-mirror.gitverse.ru"
         }
@@ -79,6 +83,10 @@ repositories {
     maven {
         name = "forge-sjtu"
         url = "https://mirror.sjtu.edu.cn/bmclapi"
+    }
+    maven {
+        name = "lss233"
+        url = "https://lss233.littleservice.cn/repositories/minecraft"
     }
     maven {
         name = "gitverse"
