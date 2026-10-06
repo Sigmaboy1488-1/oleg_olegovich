@@ -18,6 +18,7 @@ public class SteveAvengerMod {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModEntities.register(bus);
+        ModSounds.register(bus);
 
         bus.addListener(this::onAttributes);
         bus.addListener(this::onClientSetup);

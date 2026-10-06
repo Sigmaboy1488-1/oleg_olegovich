@@ -1,0 +1,12 @@
+{
+  "mob.steve_avenger.phrase1": {
+    "sounds": [
+      "steveavenger:chtosform"
+    ]
+  },
+  "mob.steve_avenger.phrase2": {
+    "sounds": [
+      "steveavenger:vottakto"
+    ]
+  }
+}
