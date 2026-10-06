@@ -1,12 +1,8 @@
 buildscript {
     repositories {
         maven {
-            name = "lss233"
-            url = "https://lss233.littleservice.cn/repositories/minecraft"
-        }
-        maven {
-            name = "gitverse"
-            url = "https://mvn-mirror.gitverse.ru"
+            name = "forge"
+            url = "https://maven.minecraftforge.net"
         }
         mavenCentral()
     }
@@ -27,8 +23,6 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
     mappings channel: 'official', version: '1.16.5'
-
-    property 'net.minecraftforge.gradle.check.certs', 'false'
 
     runs {
         client {
@@ -71,13 +65,10 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     maven {
-        name = "lss233"
-        url = "https://lss233.littleservice.cn/repositories/minecraft"
+        name = "forge"
+        url = "https://maven.minecraftforge.net"
     }
-    maven {
-        name = "gitverse"
-        url = "https://mvn-mirror.gitverse.ru"
-    }
+    mavenCentral()
 }
 
 dependencies {
