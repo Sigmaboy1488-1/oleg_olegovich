@@ -1,16 +1,16 @@
 buildscript {
     repositories {
         maven {
+            name = "lss233"
+            url = "https://lss233.littleservice.cn/repositories/minecraft"
+        }
+        maven {
             name = "forge"
             url = "https://mirrors.qlu.edu.cn/bmclapi"
         }
         maven {
             name = "forge-sjtu"
             url = "https://mirror.sjtu.edu.cn/bmclapi"
-        }
-        maven {
-            name = "lss233"
-            url = "https://lss233.littleservice.cn/repositories/minecraft"
         }
         maven {
             name = "gitverse"
@@ -77,16 +77,16 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     maven {
+        name = "lss233"
+        url = "https://lss233.littleservice.cn/repositories/minecraft"
+    }
+    maven {
         name = "forge"
         url = "https://mirrors.qlu.edu.cn/bmclapi"
     }
     maven {
         name = "forge-sjtu"
         url = "https://mirror.sjtu.edu.cn/bmclapi"
-    }
-    maven {
-        name = "lss233"
-        url = "https://lss233.littleservice.cn/repositories/minecraft"
     }
     maven {
         name = "gitverse"
