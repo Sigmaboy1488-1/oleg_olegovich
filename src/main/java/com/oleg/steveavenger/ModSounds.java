@@ -19,6 +19,10 @@ public class ModSounds {
             SOUNDS.register("mob.steve_avenger.phrase2", () ->
                     new SoundEvent(new ResourceLocation(SteveAvengerMod.MOD_ID, "mob.steve_avenger.phrase2")));
 
+    public static final RegistryObject<SoundEvent> HIT =
+            SOUNDS.register("mob.steve_avenger.hit", () ->
+                    new SoundEvent(new ResourceLocation(SteveAvengerMod.MOD_ID, "mob.steve_avenger.hit")));
+
     public static void register(IEventBus eventBus) {
         SOUNDS.register(eventBus);
     }

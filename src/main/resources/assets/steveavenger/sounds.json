@@ -8,5 +8,10 @@
     "sounds": [
       "steveavenger:vottakto"
     ]
+  },
+  "mob.steve_avenger.hit": {
+    "sounds": [
+      "steveavenger:hit_sound"
+    ]
   }
 }

@@ -98,15 +98,15 @@ public class SteveAvengerEntity extends ZombieEntity {
         return false;
     }
 
-    // ====== Отключаем все стандартные звуки зомби ======
-
-    @Override
-    protected SoundEvent getAmbientSound() {
-        return null;
-    }
+    // ====== Свои звуки ======
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
+        return ModSounds.HIT.get();
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
         return null;
     }
 
@@ -122,6 +122,6 @@ public class SteveAvengerEntity extends ZombieEntity {
 
     @Override
     protected void playStepSound(BlockPos pos, net.minecraft.block.BlockState blockIn) {
-        // Ничего не делаем — шаги беззвучны
+        // Шаги беззвучны
     }
 }
